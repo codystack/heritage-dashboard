@@ -14,9 +14,9 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 } else {
     $host 		= "localhost";
-    $user 		= "pricelistsp_app";
+    $user 		= "webiirem_heritage";
     $password 	= "$10Password!!";
-    $database 	= "pricelistsp_app";
+    $database 	= "webiirem_heritage";
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 }
 // connect to the database server
