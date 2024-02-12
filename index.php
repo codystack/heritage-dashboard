@@ -38,12 +38,12 @@
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <div class="mb-5">
                         <label class="form-label" for="email">Username</label> 
-                        <input type="text" class="form-control" required placeholder="Username" name="username">
+                        <input type="text" class="form-control" required placeholder="Username" name="userName">
                     </div>
                     <div class="mb-5">
                         <div class="d-flex justify-content-between gap-2 mb-2 align-items-center">
                             <label class="form-label mb-0" for="password">Password</label> 
-                            <a href="password-reset" class="text-sm text-muted text-primary-hover text-underline">Forgot password?</a>
+                            <!-- <a href="password-reset" class="text-sm text-muted text-primary-hover text-underline">Forgot password?</a> -->
                         </div>
                         <input type="password" class="form-control" required name="password" placeholder="**********" autocomplete="current-password">
                     </div>

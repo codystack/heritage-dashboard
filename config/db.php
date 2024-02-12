@@ -10,7 +10,7 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
     $password 	= "";
     $database 	= "heritage_assembly";
     define("APP_ENVIRONMENT", "Development");
-    define("APP_BASE_URL", "http://localhost:84/heritage-dashboard/");
+    define("APP_BASE_URL", "http://localhost/heritage-dashboard/");
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 } else {
     $host 		= "localhost";

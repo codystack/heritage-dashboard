@@ -1,16 +1,16 @@
 <?php
 //Connect Database
-include ('config/db.php');
+include ('./config/db.php');
 
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['userName'])) {
     header('location: logout');
 }
 
 if (isset($_GET['logout'])) {
     session_destroy();
-    unset($_SESSION['username']);
+    unset($_SESSION['userName']);
     header("location: ./");
 }
 
@@ -29,7 +29,6 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="assets/css/datatable.css">
     <link rel="stylesheet" href="assets/css/font/fonts.css">
     <link rel="icon" type="image/png" href="assets/img/HAFavicon.png">
-    <script src="assets/js/satoshi.js"></script>
 </head>
 
 <body class="bg-body-tertiary">

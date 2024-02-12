@@ -2,6 +2,7 @@
     $page = "Profile";
     include "./components/header.php";
     include "./components/modals.php";
+    require_once "./auth/password.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,32 +29,70 @@
                             <p class="text-sm text-muted">By filling the form below, you will be able to change your password.</p>
                         </div>
                     </div>
-                    
+                    <?php
+                        if (isset($_SESSION['error_message'])) {
+                            ?>
+                            <div class="alert alert-danger mt-5" role="alert">
+                                <div class="alert-message text-center">
+                                    <?php
+                                    echo $_SESSION['error_message'];
+                                    ?>
+                                </div>
+                            </div>
+                            <?php
+                            unset($_SESSION['error_message']);
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION['success_message'])) {
+                            ?>
+                            <div class="alert alert-success mt-5" role="alert">
+                                <div class="alert-message text-center">
+                                    <?php echo $_SESSION['success_message']; ?>
+                                </div>
+                            </div>
+                            <?php
+                            unset($_SESSION['success_message']);
+                        }
+                    ?>
                     <hr class="my-6">
-                    <form>
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                         <div class="vstack gap-5">
                             <div class="row align-items-center g-3">
-                                <div class="col-md-2"><label class="form-label mb-0">Current password</label></div>
+                                <div class="col-md-2">
+                                    <label class="form-label mb-0">Current password</label>
+                                </div>
                                 <div class="col-md-6">
-                                    <div class=""><input type="password" class="form-control"></div>
+                                    <div class="">
+                                        <input type="password" class="form-control" required id="currentpassword" name="password">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row align-items-center g-3">
-                                <div class="col-md-2"><label class="form-label mb-0">New password</label></div>
+                                <div class="col-md-2">
+                                    <label class="form-label mb-0">New password</label>
+                                </div>
                                 <div class="col-md-6">
-                                    <div class=""><input type="password" class="form-control"></div>
+                                    <div class="">
+                                        <input type="password" class="form-control" required id="newpassword" name="newPassword">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row align-items-center g-3">
-                                <div class="col-md-2"><label class="form-label mb-0">Confirm password</label></div>
-                                <div class="col-md-6">
-                                    <div class=""><input type="password" class="form-control"></div>
+                                <div class="col-md-2">
+                                    <label class="form-label mb-0">Confirm password</label>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <input type="password" class="form-control" required name="confirmpassword" id="confirmpassword">
+                                    </div>
+                                </div>
+                                <span id="message"></span>
                             </div>
                         </div>
                         <hr class="my-6 ">
                         <div class="d-flex justify-content-end gap-2 mb-6">
-                            <button type="submit" class="btn btn-lg btn-dark">Update Password</button>
+                            <button type="submit" name="password_change_btn" class="btn btn-lg btn-dark">Update Password</button>
                         </div>
                     </form>
                 </main>
@@ -61,4 +100,22 @@
         </div>
     </div>
 
-<?php include "./components/footer.php"; ?>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="assets/js/datatable.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/switcher.js"></script>
+    
+    <!-- Password Matching-->
+    <script>
+        $('#confirmpassword').on('keyup', function () {
+            if ($('#newpassword').val() == $('#confirmpassword').val()) {
+                $('#message').html('Password matched😜').css('color', 'green');
+            } else
+                $('#message').html('Password did not match😡').css('color', 'red');
+        });
+    </script>
+
+</body>
+
+</html>

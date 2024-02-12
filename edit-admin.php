@@ -2,7 +2,23 @@
     $page = "Profile";
     include "./components/header.php";
     include "./components/modals.php";
-    require_once "./auth/queries.php";
+    require_once "./auth/update.php";
+
+    $id = $_GET['id'];
+    $select_query = "SELECT * FROM tbl_admin WHERE id='$id'";
+    $result = mysqli_query($conn, $select_query);
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $firstName = $row['firstName'];
+            $lastName = $row['lastName'];
+            $email = $row['email'];
+            $userName = $row['userName'];
+            $designation = $row['designation'];
+        }
+    }
+
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -36,7 +52,7 @@
                                         <?php
                                             if (isset($_SESSION['error_message'])) {
                                                 ?>
-                                                <div class="alert alert-danger mt-5" role="alert">
+                                                <div class="alert alert-danger mt-5 mb-5" role="alert">
                                                     <div class="alert-message text-center">
                                                         <?php
                                                         echo $_SESSION['error_message'];
@@ -50,7 +66,7 @@
                                         <?php
                                             if (isset($_SESSION['success_message'])) {
                                                 ?>
-                                                <div class="alert alert-success mt-5" role="alert">
+                                                <div class="alert alert-success mt-5 mb-5" role="alert">
                                                     <div class="alert-message text-center">
                                                         <?php echo $_SESSION['success_message']; ?>
                                                     </div>
@@ -59,36 +75,38 @@
                                                 unset($_SESSION['success_message']);
                                             }
                                         ?>
-                                        <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+                                        
+                                        <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                            <div class="mb-3 col-md-6" style="display: none;">
+                                                <label class="form-label" for="id">ID</label>
+                                                <input type="text" class="form-control form-control-lg" name="id" value="<?php echo $id; ?>" readonly>
+                                            </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label class="form-label">First Name</label> 
-                                                <input class="form-control" name="firstName" placeholder="John" required type="text">
+                                                <input class="form-control" name="firstName" value="<?php echo $firstName; ?>" type="text">
                                             </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label class="form-label">Last Name</label> 
-                                                <input class="form-control" name="lastName" placeholder="Doe" required type="text">
+                                                <input class="form-control" name="lastName" value="<?php echo $lastName; ?>" type="text">
                                             </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label class="form-label">Username</label> 
-                                                <input class="form-control" name="userName" placeholder="johndoe" required type="text">
+                                                <input class="form-control" name="userName" value="<?php echo $userName; ?>" type="text">
                                             </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label class="form-label">Email</label> 
-                                                <input class="form-control" name="email" placeholder="example@gmail.com" required type="email">
+                                                <input class="form-control" name="email" value="<?php echo $email; ?>" type="email">
                                             </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label class="form-label">Designation</label> 
                                                 <select class="form-select" name="designation">
+                                                    <option><?php echo $designation; ?></option>
                                                     <option value="Admin">Admin</option>
                                                     <option value="Super-Admin">Super-Admin</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 mb-3">
-                                                <label class="form-label">Password</label> 
-                                                <input class="form-control" name="password" placeholder="********" required type="password">
-                                            </div>
                                             <div class="mt-5 mb-10">
-                                                <button type="submit" name="add_new_admin_btn" class="btn w-100 btn-lg btn-dark">Add New Admin</button>
+                                                <button type="submit" name="update_admin_btn" class="btn w-100 btn-lg btn-dark">Edit Admin Profile</button>
                                             </div>
                                         </form>
                                     </div>

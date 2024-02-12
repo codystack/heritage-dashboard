@@ -11,11 +11,11 @@ if (isset($_POST['admin_login_btn'])) {
     $lastName = $conn->real_escape_string($_POST['lastName']);
     $email = $conn->real_escape_string($_POST['email']);
     $status = $conn->real_escape_string($_POST['status']);
-    $username = $conn->real_escape_string($_POST['username']);
+    $userName = $conn->real_escape_string($_POST['userName']);
     $designation = $conn->real_escape_string($_POST['designation']);
 
     $password = sha1($password);
-    $query = "SELECT * FROM tbl_admin WHERE username='$username' AND password='$password'";
+    $query = "SELECT * FROM tbl_admin WHERE userName='$userName' AND password='$password'";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_array($result)) {
         $firstName = $row['firstName'];
@@ -24,14 +24,14 @@ if (isset($_POST['admin_login_btn'])) {
         $id = $row['id'];
         $status = $row['status'];
         $designation = $row['designation'];
-        $username = $row['username'];
+        $userName = $row['userName'];
         $picture = $row['picture'];
     }if (mysqli_num_rows($result) == 1) {
         $_SESSION['firstName'] = $firstName;
         $_SESSION['lastName'] = $lastName;
         $_SESSION['picture'] = $picture;
         $_SESSION['email'] = $email;
-        $_SESSION['username'] = $username;
+        $_SESSION['userName'] = $userName;
         $_SESSION['designation'] = $designation;
         $_SESSION['status'] = $status;
         $_SESSION['id'] = $id;

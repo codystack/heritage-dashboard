@@ -3,33 +3,30 @@
 include "./config/db.php";
 
 
-//New Staff Request
-if (isset($_POST['add_new_staff_btn'])) {
+//New Admin Query
+if (isset($_POST['add_new_admin_btn'])) {
 
     $firstName = $conn->real_escape_string($_POST['firstName']);
     $lastName = $conn->real_escape_string($_POST['lastName']);
     $email = $conn->real_escape_string($_POST['email']);
+    $userName = $conn->real_escape_string($_POST['userName']);
     $password = $conn->real_escape_string($_POST['password']);
-    $phone = $conn->real_escape_string($_POST['phone']);
-    $accountType = $conn->real_escape_string($_POST['accountType']);
+    $designation = $conn->real_escape_string($_POST['designation']);
     $picture = $conn->real_escape_string($_POST['picture']);
 
-    $check_user_query = "SELECT * FROM staff WHERE email='$email'";
+    $check_user_query = "SELECT * FROM tbl_admin WHERE email='$email'";
     $result = mysqli_query($conn, $check_user_query);
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['error_message'] = "Staff Already Exist!";
+        $_SESSION['error_message'] = "Admin Already Exist!";
     }else {
-        // Finally, register agent if there are no errors in the form
+        // Finally, register admin if there are no errors in the form
         $password = sha1($password);//encrypt the password before saving in the database
-        $query = "INSERT INTO staff (firstName, lastName, email, phone, password, picture, accountType, status) 
-  			        VALUES('$firstName', '$lastName', '$email', '$phone', '$password', 'upload/avatar.png', '$accountType', 'Inactive')";
+        $query = "INSERT INTO tbl_admin (firstName, lastName, userName, email, password, picture, designation, status) 
+  			        VALUES('$firstName', '$lastName', '$userName', '$email', '$password', 'assets/img/memoji/memoji-2.svg', '$designation', '1')";
         mysqli_query($conn, $query);
         if (mysqli_affected_rows($conn) > 0) {
-
-            $_SESSION['email'] = $email;
-            $_SESSION['firstName'] = $firstName;
-            $_SESSION['success_message'] = "Staff Account Created";
-            echo "<meta http-equiv='refresh' content='5; URL=staff'>";
+            $_SESSION['success_message'] = "New Admin Account Created";
+            echo "<meta http-equiv='refresh' content='5; URL=new-admin'>";
         }else {
             $_SESSION['error_message']    = "Error creating account".mysqli_error($conn);
         }

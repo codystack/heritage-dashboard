@@ -332,3 +332,84 @@
         </div>
     </div>
     <!-- View media modal end-->
+
+
+    <!-- View admin modal start-->
+    <div class="modal fade" id="viewAdminModal" tabindex="-1" aria-labelledby="viewAdminModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content shadow-3">
+                <div class="modal-header justify-content-start">
+                    <div class="icon icon-shape rounded-3 bg-primary-subtle text-primary text-lg me-4">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-1">Admin Details</h5>
+                    </div>
+                </div>
+                <div class="modal-body row">
+                    <div id="admin_detail">
+                        Testing
+                    </div>
+                    <!-- <div class="col-sm-6 mb-3">
+                        <label class="form-label">First Name</label> 
+                        <input class="form-control" name="firstName" value="<?php echo $firstName; ?>" type="text">
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label">Last Name</label> 
+                        <input class="form-control" name="lastName" value="<?php echo $lastName; ?>" type="text">
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label">Username</label> 
+                        <input class="form-control" name="userName" value="<?php echo $userName; ?>" type="text">
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label">Email</label> 
+                        <input class="form-control" name="email" value="<?php echo $email; ?>" type="email">
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label">Designation</label> 
+                        <select class="form-select" name="designation">
+                            <option><?php echo $designation; ?></option>
+                            <option value="Admin">Admin</option>
+                            <option value="Super-Admin">Super-Admin</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label">Status</label> 
+                        <select class="form-select" name="status">
+                            <option><?php echo $statusText; ?></option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- View admin modal end-->
+
+
+    <!-- User Delete Modal Start-->
+    <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center mt-0">
+                        <img src="./assets/svg/caution.svg" width="200px">
+                    </div>
+                    <h4 class="text-center">Are you sure you want to delete this user?</h4>
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="form-delete-user">
+                        <input type="hidden" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer border-0 justify-content-center mt-n3 mb-4">
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="form-delete-user" name="delete_admin_btn" class="btn btn-lg text-white btn-success">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- User Delete Modal End-->
