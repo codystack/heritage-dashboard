@@ -107,7 +107,7 @@
                                                     <tr>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 ps-1">
-                                                                <div class="d-xl-inline-flex icon icon-shape w-rem-8 h-rem-8 rounded-circle text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-people-fill"></i></div>
+                                                                <div class="d-xl-inline-flex icon icon-shape w-rem-8 h-rem-8 rounded-circle text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-person-fill"></i></div>
                                                                 <div><span class="d-block text-heading fw-bold"><?php echo $firstName; ?> <?php echo $lastName; ?></span></div>
                                                             </div>
                                                         </td>
@@ -130,8 +130,6 @@
                                                     </tr>
                                                     <?php
                                                             }
-                                                        }else {
-                                                            echo "<td><p>Admins Yet!</p></td>";
                                                         }
                                                     ?>
                                                 </tbody>
@@ -150,5 +148,6 @@
 
 <?php 
 include "./components/modals.php";
+include "./components/delete-modals.php";
 include "./components/footer.php"; 
 ?>

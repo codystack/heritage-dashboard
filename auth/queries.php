@@ -26,7 +26,7 @@ if (isset($_POST['add_new_admin_btn'])) {
         mysqli_query($conn, $query);
         if (mysqli_affected_rows($conn) > 0) {
             $_SESSION['success_message'] = "New Admin Account Created";
-            echo "<meta http-equiv='refresh' content='5; URL=new-admin'>";
+            echo "<meta http-equiv='refresh' content='3; URL=new-admin'>";
         }else {
             $_SESSION['error_message']    = "Error creating account".mysqli_error($conn);
         }
@@ -35,28 +35,26 @@ if (isset($_POST['add_new_admin_btn'])) {
 
 
 
-//New Category Request
-if (isset($_POST['add_new_subcategory_btn'])) {
+//New Settings Query
+if (isset($_POST['add_new_settings_btn'])) {
 
-    $catID = $conn->real_escape_string($_POST['catID']);
-    $subCatName = $conn->real_escape_string($_POST['subCatName']);
+    $title = $conn->real_escape_string($_POST['title']);
+    $value = $conn->real_escape_string($_POST['value']);
 
-    $check_user_query = "SELECT * FROM subcategories WHERE subCatName='$subCatName'";
-    $result = mysqli_query($conn, $check_user_query);
+    $check_query = "SELECT * FROM tbl_settings WHERE id='$id'";
+    $result = mysqli_query($conn, $check_query);
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['error_message'] = "Category Already Exist!";
+        $_SESSION['error_message'] = "Setting Already Exist!";
     }else {
         
-        $query = "INSERT INTO subcategories (subCatName, catID) 
-  			        VALUES('$subCatName', '$catID')";
+        $query = "INSERT INTO tbl_settings (title, value) 
+  			        VALUES('$title', '$value')";
         mysqli_query($conn, $query);
         if (mysqli_affected_rows($conn) > 0) {
-
-            $_SESSION['subCatName'] = $subCatName;
-            $_SESSION['success_message'] = "New Sub-Category Added";
-            echo "<meta http-equiv='refresh' content='5; URL=sub-categories'>";
+            $_SESSION['success_message'] = "New Setting Added";
+            echo "<meta http-equiv='refresh' content='3; URL=settings'>";
         }else {
-            $_SESSION['error_message']    = "Error creating account".mysqli_error($conn);
+            $_SESSION['error_message']    = "Error adding new setting".mysqli_error($conn);
         }
     }
 }
