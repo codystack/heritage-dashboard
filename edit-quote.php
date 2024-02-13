@@ -1,7 +1,19 @@
 <?php
     $page = "Quotes";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/update.php";
+
+    $id = $_GET['id'];
+    $select_query = "SELECT * FROM tbl_quote WHERE id='$id'";
+    $result = mysqli_query($conn, $select_query);
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $title = $row['title'];
+            $link = $row['link'];
+        }
+    }
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,17 +40,47 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5 mb-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5 mb-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                    <div class="mb-3 col-md-6" style="display: none;">
+                                        <label class="form-label" for="id">ID</label>
+                                        <input type="text" class="form-control form-control-lg" name="id" value="<?php echo $id; ?>" readonly>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">Title</label> 
-                                        <input class="form-control" placeholder="Title" value="No Gree for Anybody" type="text">
+                                        <input class="form-control" placeholder="Title" name="title" value="<?php echo $title; ?>" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Photo Link</label> 
-                                        <input class="form-control" placeholder="Photo Link" value="https://lh5.googleusercontent.com/_yvv7zcxxiGo6mZ4z3-WjpNSGMw_r0m8_oI24-c2FObCtjdvbWctP3CG8VMurxwD" type="text">
+                                        <input class="form-control" placeholder="Photo Link" name="link" value="<?php echo $link; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Update Quote</button>
+                                        <button type="submit" name="update_quote_btn" class="btn w-100 btn-lg btn-dark">Update Quote</button>
                                     </div>
                                 </form>
                             </div>

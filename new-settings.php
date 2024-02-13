@@ -1,7 +1,6 @@
 <?php
     $page = "Settings";
     include "./components/header.php";
-    include "./components/modals.php";
     require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">

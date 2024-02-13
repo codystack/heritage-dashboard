@@ -1,7 +1,7 @@
 <?php
     $page = "New Category";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,13 +28,39 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="mb-3">
                                         <label class="form-label">Category Name</label> 
-                                        <input class="form-control" placeholder="Title" type="text">
+                                        <input class="form-control" name="category" placeholder="Title" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Add New Category</button>
+                                        <button type="submit" name="add_new_category_btn" class="btn w-100 btn-lg btn-dark">Add New Category</button>
                                     </div>
                                 </form>
                             </div>

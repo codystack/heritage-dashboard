@@ -1,7 +1,6 @@
 <?php
     $page = "Settings";
     include "./components/header.php";
-    include "./components/modals.php";
     require_once "./auth/update.php";
 
     $id = $_GET['id'];

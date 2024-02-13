@@ -53,3 +53,49 @@ $id = $_GET['id'];
         }
 
     }
+
+
+    //Update Quote Query
+    if (isset($_POST['update_quote_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $title = $conn->real_escape_string($_POST['title']);
+        $link = $conn->real_escape_string($_POST['link']);
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_quote where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_quote SET title='$title', link='$link' WHERE id='$id'");
+            $_SESSION['success_message'] = "Quote updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=quotes'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating quote.".mysqli_error($conn);
+        }
+
+    }
+
+
+
+    //Update Category Query
+    if (isset($_POST['update_category_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $category = $conn->real_escape_string($_POST['category']);
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_categories where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_categories SET category='$category' WHERE id='$id'");
+            $_SESSION['success_message'] = "Category updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=categories'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating category.".mysqli_error($conn);
+        }
+
+    }
