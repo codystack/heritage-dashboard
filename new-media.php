@@ -1,7 +1,7 @@
 <?php
     $page = "New Media";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,37 +28,79 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Message Title</label> 
-                                        <input class="form-control" placeholder="Message Title" type="text">
+                                        <input class="form-control" name="messageTitle" placeholder="Message Title" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Preacher</label> 
-                                        <input class="form-control" placeholder="Preacher" type="text">
+                                        <input class="form-control" name="preacher" placeholder="Preacher" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Category</label> 
-                                        <input class="form-control" placeholder="Category" type="text">
+                                        <select class="form-select" name="category">
+                                            <?php
+                                            $select_query = "SELECT * FROM tbl_categories";
+                                            $result = mysqli_query($conn, $select_query);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                                    $category = $row['category'];
+                                            ?>
+                                            <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
+                                    
+                                    
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Date</label> 
-                                        <input class="form-control" placeholder="Date" type="text">
+                                        <input class="form-control" name="date" placeholder="Date" type="date">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label> 
-                                        <textarea class="form-control" placeholder="Description" type="text"></textarea>
+                                        <textarea class="form-control" name="description" placeholder="Description" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Audio Link</label> 
-                                        <input class="form-control" placeholder="Audio Link" type="text">
+                                        <input class="form-control" name="audioLink" placeholder="Audio Link" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Youtube Link</label> 
-                                        <input class="form-control" placeholder="Youtube Link" type="text">
+                                        <input class="form-control" name="youtubeLink" placeholder="Youtube Link" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Add New Media</button>
+                                        <button type="submit" name="add_new_media_btn" class="btn w-100 btn-lg btn-dark">Add New Media</button>
                                     </div>
                                 </form>
                             </div>

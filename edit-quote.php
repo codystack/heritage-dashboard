@@ -66,18 +66,18 @@
                                         unset($_SESSION['success_message']);
                                     }
                                 ?>
-                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3 col-md-6" style="display: none;">
                                         <label class="form-label" for="id">ID</label>
                                         <input type="text" class="form-control form-control-lg" name="id" value="<?php echo $id; ?>" readonly>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6 mb-3">
                                         <label class="form-label">Title</label> 
                                         <input class="form-control" placeholder="Title" name="title" value="<?php echo $title; ?>" type="text">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Photo Link</label> 
-                                        <input class="form-control" placeholder="Photo Link" name="link" value="<?php echo $link; ?>" type="text">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label" for="quotePhotograph">Upload Quote Photograph</label>
+                                        <input type="file" class="form-control" name="link" id="quotePhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
                                         <button type="submit" name="update_quote_btn" class="btn w-100 btn-lg btn-dark">Update Quote</button>

@@ -1,4 +1,4 @@
-    <!-- User Delete Modal Start-->
+    <!-- Admin Delete Modal Start-->
     <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <!-- User Delete Modal End-->
+    <!-- Admin Delete Modal End-->
 
 
     <!-- Setting Delete Modal Start-->
@@ -53,7 +53,7 @@
                     <div class="text-center mt-0">
                         <img src="./assets/svg/caution.svg" width="200px">
                     </div>
-                    <h4 class="text-center">Are you sure you want to delete this setting?</h4>
+                    <h4 class="text-center">Are you sure you want to delete this quote?</h4>
                     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="form-delete-quote">
                         <input type="hidden" name="id">
                     </form>
@@ -77,7 +77,7 @@
                     <div class="text-center mt-0">
                         <img src="./assets/svg/caution.svg" width="200px">
                     </div>
-                    <h4 class="text-center">Are you sure you want to delete this setting?</h4>
+                    <h4 class="text-center">Are you sure you want to delete this category?</h4>
                     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="form-delete-category">
                         <input type="hidden" name="id">
                     </form>
@@ -90,3 +90,50 @@
         </div>
     </div>
     <!-- Category Delete Modal End-->
+
+
+
+    <!-- Branch Delete Modal Start-->
+    <div class="modal fade" id="branchDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center mt-0">
+                        <img src="./assets/svg/caution.svg" width="200px">
+                    </div>
+                    <h4 class="text-center">Are you sure you want to delete this branch?</h4>
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="form-delete-branch">
+                        <input type="hidden" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer border-0 justify-content-center mt-n3 mb-4">
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="form-delete-branch" name="delete_branch_btn" class="btn btn-lg text-white btn-success">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Branch Delete Modal End-->
+
+
+    <!-- Media Delete Modal Start-->
+    <div class="modal fade" id="mediaDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center mt-0">
+                        <img src="./assets/svg/caution.svg" width="200px">
+                    </div>
+                    <h4 class="text-center">Are you sure you want to delete this media?</h4>
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="form-delete-media">
+                        <input type="hidden" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer border-0 justify-content-center mt-n3 mb-4">
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="form-delete-media" name="delete_media_btn" class="btn btn-lg text-white btn-success">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Media Delete Modal End-->

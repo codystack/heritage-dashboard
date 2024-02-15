@@ -32,3 +32,21 @@ function confirmCategoryDelete(self) {
     document.getElementById("form-delete-category").id.value = id;
     $("#categoryDeleteModal").modal("show");
 }
+
+
+//Branch Delete Trigger
+function confirmBranchDelete(self) {
+    var id = self.getAttribute("data-id");
+
+    document.getElementById("form-delete-branch").id.value = id;
+    $("#branchDeleteModal").modal("show");
+}
+
+
+//Media Delete Trigger
+function confirmMediaDelete(self) {
+    var id = self.getAttribute("data-id");
+
+    document.getElementById("form-delete-media").id.value = id;
+    $("#mediaDeleteModal").modal("show");
+}

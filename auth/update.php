@@ -62,13 +62,29 @@ $id = $_GET['id'];
 
         $id = $conn->real_escape_string($_POST['id']);
         $title = $conn->real_escape_string($_POST['title']);
-        $link = $conn->real_escape_string($_POST['link']);
+        $link_path  = $conn->real_escape_string('upload/'.$_FILES['link']['name']);
+
+        if (file_exists($link_path)){
+            $link_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['link']['name']);
+        }
+
+        $checker = 0;
+
+        //make sure file type is image
+        if (preg_match("!image!", $_FILES['link']['type'])) {
+            $checker ++;
+        }
+        if ($checker < 1){
+            exit;
+        }
 
 
         $sql=mysqli_query($conn,"SELECT * FROM tbl_quote where id='$id'");
         $result=mysqli_fetch_array($sql);
         if($result>0){
-            $conn=mysqli_query($conn,"UPDATE tbl_quote SET title='$title', link='$link' WHERE id='$id'");
+            $conn=mysqli_query($conn,"UPDATE tbl_quote SET title='$title', link='$link_path' WHERE id='$id'");
+            //copy image to upload folder
+            copy($_FILES['link']['tmp_name'], $link_path);
             $_SESSION['success_message'] = "Quote updated 👍";
             echo "<meta http-equiv='refresh' content='3; URL=quotes'>";
         } else {
@@ -96,6 +112,40 @@ $id = $_GET['id'];
             echo "<meta http-equiv='refresh' content='3; URL=categories'>";
         } else {
             $_SESSION['error_message'] = "Error updating category.".mysqli_error($conn);
+        }
+
+    }
+
+
+    //Update Branch Query
+    if (isset($_POST['update_branch_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $branchName = $conn->real_escape_string($_POST['branchName']);
+        $firstMeetingDay = $conn->real_escape_string($_POST['firstMeetingDay']);
+        $firstMeetingActivity = $conn->real_escape_string($_POST['firstMeetingActivity']);
+        $firstMeetingTime = $conn->real_escape_string($_POST['firstMeetingTime']);
+        $secondMeetingDay = $conn->real_escape_string($_POST['secondMeetingDay']);
+        $secondMeetingActivity = $conn->real_escape_string($_POST['secondMeetingActivity']);
+        $secondMeetingTime = $conn->real_escape_string($_POST['secondMeetingTime']);
+        $thirdMeetingDay = $conn->real_escape_string($_POST['thirdMeetingDay']);
+        $thirdMeetingActivity = $conn->real_escape_string($_POST['thirdMeetingActivity']);
+        $thirdMeetingTime = $conn->real_escape_string($_POST['thirdMeetingTime']);
+        $address = $conn->real_escape_string($_POST['address']);
+        $longitude = $conn->real_escape_string($_POST['longitude']);
+        $latitude = $conn->real_escape_string($_POST['latitude']);
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_branches where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_branches SET branchName='$branchName', firstMeetingDay='$firstMeetingDay', firstMeetingActivity='$firstMeetingActivity', firstMeetingTime='$firstMeetingTime', secondMeetingDay='$secondMeetingDay', secondMeetingActivity='$secondMeetingActivity', secondMeetingTime='$secondMeetingTime', thirdMeetingDay='$thirdMeetingDay', thirdMeetingActivity='$thirdMeetingActivity', thirdMeetingTime='$thirdMeetingTime', address='$address', longitude='$longitude', latitude='$latitude' WHERE id='$id'");
+            $_SESSION['success_message'] = "Branch updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=branches'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating branch.".mysqli_error($conn);
         }
 
     }

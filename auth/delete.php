@@ -84,3 +84,44 @@ if (isset($_POST['delete_category_btn'])) {
     }
 
 }
+
+
+
+// Delete Branch script
+if (isset($_POST['delete_branch_btn'])) {
+
+    $id = $_GET['id'];
+
+    $id = $conn->real_escape_string($_POST['id']);
+
+    $query = "DELETE FROM tbl_branches WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_affected_rows($conn) > 0 ) {
+        $_SESSION['success_message'] = "Branch deleted";
+        echo "<meta http-equiv='refresh' content='3; URL=branches'>";
+    }else{
+        $_SESSION['error_message'] = "Error deleting branch".mysqli_error($conn);
+    }
+
+}
+
+
+// Delete Media script
+if (isset($_POST['delete_media_btn'])) {
+
+    $id = $_GET['id'];
+
+    $id = $conn->real_escape_string($_POST['id']);
+
+    $query = "DELETE FROM tbl_media WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_affected_rows($conn) > 0 ) {
+        $_SESSION['success_message'] = "Media deleted";
+        echo "<meta http-equiv='refresh' content='3; URL=media'>";
+    }else{
+        $_SESSION['error_message'] = "Error deleting media".mysqli_error($conn);
+    }
+
+}

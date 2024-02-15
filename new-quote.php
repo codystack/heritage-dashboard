@@ -54,14 +54,14 @@
                                         unset($_SESSION['success_message']);
                                     }
                                 ?>
-                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-                                    <div class="mb-3">
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3 col-md-6">
                                         <label class="form-label">Title</label> 
                                         <input class="form-control" name="title" placeholder="Title" type="text">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Photo Link</label> 
-                                        <input class="form-control" name="link" placeholder="Photo Link" type="text">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label" for="quotePhotograph">Upload Quote Photograph</label>
+                                        <input type="file" class="form-control" name="link" id="quotePhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
                                         <button type="submit" name="add_new_quote_btn" class="btn w-100 btn-lg btn-dark">Add New Quote</button>

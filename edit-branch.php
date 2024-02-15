@@ -1,7 +1,31 @@
 <?php
     $page = "Branches";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/update.php";
+
+    $id = $_GET['id'];
+    $select_query = "SELECT * FROM tbl_branches WHERE id='$id'";
+    $result = mysqli_query($conn, $select_query);
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $branchName = $row['branchName'];
+            $firstMeetingDay = $row['firstMeetingDay'];
+            $firstMeetingActivity = $row['firstMeetingActivity'];
+            $firstMeetingTime = $row['firstMeetingTime'];
+            $secondMeetingDay = $row['secondMeetingDay'];
+            $secondMeetingActivity = $row['secondMeetingActivity'];
+            $secondMeetingTime = $row['secondMeetingTime'];
+            $thirdMeetingDay = $row['thirdMeetingDay'];
+            $thirdMeetingActivity = $row['thirdMeetingActivity'];
+            $thirdMeetingTime = $row['thirdMeetingTime'];
+            $address = $row['address'];
+            $longitude = $row['longitude'];
+            $latitude = $row['latitude'];
+
+        }
+    }
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,61 +52,91 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5 mb-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5 mb-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                    <div class="mb-3 col-md-6" style="display: none;">
+                                        <label class="form-label" for="id">ID</label>
+                                        <input type="text" class="form-control form-control-lg" name="id" value="<?php echo $id; ?>" readonly>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">Branch Name</label> 
-                                        <input class="form-control" placeholder="Branch name" value="Abuja" type="text">
+                                        <input class="form-control" name="branchName" value="<?php echo $branchName; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Day's</label> 
-                                        <input class="form-control" placeholder="Meeting day's" value="Sundays" type="text">
+                                        <input class="form-control" name="firstMeetingDay" value="<?php echo $firstMeetingDay; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Activity</label> 
-                                        <input class="form-control" placeholder="1st Activity" value="Wordship Service" type="text">
+                                        <input class="form-control" name="firstMeetingActivity" value="<?php echo $firstMeetingActivity; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Time</label> 
-                                        <input class="form-control" placeholder="1st Activity" value="8:30am" type="text">
+                                        <input class="form-control" name="firstMeetingTime" value="<?php echo $firstMeetingTime; ?>" type="time">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Day's</label> 
-                                        <input class="form-control" placeholder="Meeting day's" value="Wednesdays" type="text">
+                                        <input class="form-control" name="secondMeetingDay" value="<?php echo $secondMeetingDay; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Activity</label> 
-                                        <input class="form-control" placeholder="2nd Activity" value="School of the World" type="text">
+                                        <input class="form-control" name="secondMeetingActivity" value="<?php echo $secondMeetingActivity; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Time</label> 
-                                        <input class="form-control" placeholder="2nd Activity" value="5:30pm" type="text">
+                                        <input class="form-control" name="secondMeetingTime" value="<?php echo $secondMeetingTime; ?>" type="time">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Day's</label> 
-                                        <input class="form-control" placeholder="Meeting day's" value="Fridays" type="text">
+                                        <input class="form-control" name="thirdMeetingDay" value="<?php echo $thirdMeetingDay; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Activity</label> 
-                                        <input class="form-control" placeholder="1st Activity" value="Prayer Meeting" type="text">
+                                        <input class="form-control" name="thirdMeetingActivity" value="<?php echo $thirdMeetingActivity; ?>" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Time</label> 
-                                        <input class="form-control" placeholder="1st Activity" value="5:30am" type="text">
+                                        <input class="form-control" name="thirdMeetingTime" value="<?php echo $thirdMeetingTime; ?>" type="time">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Address</label> 
-                                        <textarea class="form-control" placeholder="Address" row="5" type="text">1st Floor, The Kings' Complex, opposite NAF Conference Centre, Ahmadu Bello Way, Jahi, Abuja</textarea>
+                                        <textarea class="form-control" name="address" row="5" type="text"><?php echo $address; ?></textarea>
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Longitude</label> 
-                                        <input class="form-control" placeholder="Longitude" value="7.4215824" type="text">
+                                        <input class="form-control" name="longitude" value="<?php echo $longitude; ?>" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Latitude</label> 
-                                        <input class="form-control" placeholder="Latitude" value="9.0892637" type="text">
+                                        <input class="form-control" name="latitude" value="<?php echo $latitude; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Update Branch</button>
+                                        <button type="submit" name="update_branch_btn" class="btn w-100 btn-lg btn-dark">Update Branch</button>
                                     </div>
                                 </form>
                             </div>
