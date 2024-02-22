@@ -65,10 +65,10 @@ if (isset($_POST['add_new_settings_btn'])) {
 if(isset($_POST['add_new_quote_btn'])) {
 
     $title = $conn->real_escape_string($_POST['title']);
-    $link_path = $conn->real_escape_string('upload/'.$_FILES['link']['name']);
+    $photograph_path = $conn->real_escape_string('upload/'.$_FILES['link']['name']);
 
-    if (file_exists($link_path)){
-        $link_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['link']['name']);
+    if (file_exists($photograph_path)){
+        $photograph_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['link']['name']);
     }
 
     $checker = 0;
@@ -82,12 +82,12 @@ if(isset($_POST['add_new_quote_btn'])) {
     }
 
     $query = "INSERT INTO tbl_quote (title, link) 
-  			        VALUES('$title', '$link_path')";
+  			        VALUES('$title', '$photograph_path')";
 
     mysqli_query($conn, $query);
     if (mysqli_affected_rows($conn) > 0) {
         //copy image to upload folder
-        copy($_FILES['link']['tmp_name'], $link_path);
+        copy($_FILES['link']['tmp_name'], $photograph_path);
         $_SESSION['success_message'] = "Quote Added";
         echo "<meta http-equiv='refresh' content='3; URL=quotes'>";
     }else {
@@ -185,6 +185,125 @@ if (isset($_POST['add_new_media_btn'])) {
             echo "<meta http-equiv='refresh' content='3; URL=media'>";
         }else {
             $_SESSION['error_message'] = "Error adding media".mysqli_error($conn);
+        }
+    }
+}
+
+
+
+
+//New Pastor Query
+if(isset($_POST['add_new_pastor_btn'])) {
+
+    $pastorName = $conn->real_escape_string($_POST['pastorName']);
+    $branch = $conn->real_escape_string($_POST['branch']);
+    $phone = $conn->real_escape_string($_POST['phone']);
+    $photograph_path = $conn->real_escape_string('upload/'.$_FILES['photograph']['name']);
+
+    if (file_exists($photograph_path)){
+        $photograph_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['photograph']['name']);
+    }
+
+    $checker = 0;
+
+    //make sure file type is image
+    if (preg_match("!image!", $_FILES['photograph']['type'])) {
+        $checker ++;
+    }
+    if ($checker < 1){
+        exit;
+    }
+
+    $query = "INSERT INTO tbl_pastors (pastorName, branch, phone, photograph) 
+  			        VALUES('$pastorName', '$branch', '$phone', '$photograph_path')";
+
+    mysqli_query($conn, $query);
+    if (mysqli_affected_rows($conn) > 0) {
+        //copy image to upload folder
+        copy($_FILES['photograph']['tmp_name'], $photograph_path);
+        $_SESSION['success_message'] = "Pastor Added";
+        echo "<meta http-equiv='refresh' content='3; URL=pastors'>";
+    }else {
+        $_SESSION['error_message'] = "Error adding pastor".mysqli_error($conn);
+    }
+
+}
+
+
+
+
+//New Devotional Query
+if (isset($_POST['add_new_devotional_btn'])) {
+
+    $topic = $conn->real_escape_string($_POST['topic']);
+    $scripture = $conn->real_escape_string($_POST['scripture']);
+    $memoryVerse = $conn->real_escape_string($_POST['memoryVerse']);
+    $firstParagraph = $conn->real_escape_string($_POST['firstParagraph']);
+    $secondParagraph = $conn->real_escape_string($_POST['secondParagraph']);
+    $thirdParagraph = $conn->real_escape_string($_POST['thirdParagraph']);
+    $prayer = $conn->real_escape_string($_POST['prayer']);
+
+
+    $check_query = "SELECT * FROM tbl_devotionals WHERE topic='$topic'";
+    $result = mysqli_query($conn, $check_query);
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['error_message'] = "Devotional Already Exist!";
+    }else {
+        $query = "INSERT INTO tbl_devotionals (topic, scripture, memoryVerse, firstParagraph, secondParagraph, thirdParagraph, prayer) 
+  			        VALUES('$topic', '$scripture', '$memoryVerse', '$firstParagraph', '$secondParagraph', '$thirdParagraph', '$prayer')";
+        mysqli_query($conn, $query);
+        if (mysqli_affected_rows($conn) > 0) {
+            $_SESSION['success_message'] = "Devotional Added";
+            echo "<meta http-equiv='refresh' content='3; URL=devotionals'>";
+        }else {
+            $_SESSION['error_message'] = "Error adding devotional".mysqli_error($conn);
+        }
+    }
+}
+
+
+
+//New Event Query
+if (isset($_POST['add_new_event_btn'])) {
+
+    $eventTitle = $conn->real_escape_string($_POST['eventTitle']);
+    $eventDate = $conn->real_escape_string($_POST['eventDate']);
+    $eventTime = $conn->real_escape_string($_POST['eventTime']);
+    $eventVenue = $conn->real_escape_string($_POST['eventVenue']);
+    $eventType = $conn->real_escape_string($_POST['eventType']);
+    $eventDescription = $conn->real_escape_string($_POST['eventDescription']);
+    $eventFlyer_path = $conn->real_escape_string('upload/'.$_FILES['eventFlyer']['name']);
+
+    if (file_exists($eventFlyer_path)){
+        $eventFlyer_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['eventFlyer']['name']);
+    }
+
+    $checker = 0;
+
+    //make sure file type is image
+    if (preg_match("!image!", $_FILES['eventFlyer']['type'])) {
+        $checker ++;
+    }
+    if ($checker < 1){
+        exit;
+    }
+
+
+    $check_query = "SELECT * FROM tbl_event WHERE eventTitle='$eventTitle'";
+    $result = mysqli_query($conn, $check_query);
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['error_message'] = "Event Already Exist!";
+    }else {
+        $query = "INSERT INTO tbl_event (eventTitle, eventDate, eventTime, eventVenue, eventType, eventDescription, eventFlyer) 
+  			        VALUES('$eventTitle', '$eventDate', '$eventTime', '$eventVenue', '$eventType', '$eventDescription', '$eventFlyer_path')";
+        mysqli_query($conn, $query);
+        if (mysqli_affected_rows($conn) > 0) {
+            //copy image to upload folder
+            copy($_FILES['eventFlyer']['tmp_name'], $eventFlyer_path);
+            $_SESSION['success_message'] = "Event Added";
+            echo "<meta http-equiv='refresh' content='3; URL=events'>";
+        }else {
+            $_SESSION['error_message'] = "Error adding event".mysqli_error($conn);
         }
     }
 }

@@ -114,25 +114,48 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content shadow-3">
                 <div class="modal-body row">
-                    <div class="text-center mb-5">
-                        <img src="assets/img/memoji/memoji-2.svg" class="avatar-sm w-rem-48 h-rem-48 rounded-circle">
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                        <label class="form-label">Pastor's Name</label> 
-                        <input class="form-control" placeholder="pastor's name" value="Rev. Oje Ohiwerei" type="text" readonly>
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                        <label class="form-label">Branch</label> 
-                        <input class="form-control" placeholder="Branch" value="Abuja Branch" type="text" readonly>
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                        <label class="form-label">Phone Number</label> 
-                        <input class="form-control" placeholder="Meeting day's" value="+2348162680095" type="text" readonly>
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                        <label class="form-label">Date Joined</label> 
-                        <input class="form-control" placeholder="Latitude" value="21 / 1 / 2024" type="text" readonly>
-                    </div>
+                    <form class="row" id="form-view-pastor">
+                        <?php
+                        $id = $_GET['id'];
+
+                        $select_query = "SELECT * FROM tbl_pastors WHERE id='".$_GET['id']."'";
+                        $result = mysqli_query($conn, $select_query);
+                        if (mysqli_num_rows($result) > 0) {
+                            // output data of each row
+                            while($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
+                                $pastorName = $row['pastorName'];
+                                $branch = $row['branch'];
+                                $phone = $row['phone'];
+                                $dateCreated = $row['dateCreated'];
+                                $date = strtotime($dateCreated);
+                            }
+                        }
+                        ?>
+                        <div class="text-center mb-5">
+                            <img src="assets/img/memoji/memoji-2.svg" class="avatar-sm w-rem-48 h-rem-48 rounded-circle">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" for="id">ID</label>
+                            <input type="text" class="form-control form-control-lg" name="id" value="<?php echo $id; ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="form-label">Pastor's Name</label> 
+                            <input class="form-control" placeholder="pastor's name" value="<?php echo $pastorName; ?>" type="text" readonly>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="form-label">Branch</label> 
+                            <input class="form-control" placeholder="Branch" value="<?php echo $branch; ?>" type="text" readonly>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="form-label">Phone Number</label> 
+                            <input class="form-control" placeholder="Meeting day's" value="<?php echo $phone; ?>" type="text" readonly>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="form-label">Date Joined</label> 
+                            <input class="form-control" placeholder="Latitude" value="<?php echo date('j F Y', $date); ?>" type="text" readonly>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>

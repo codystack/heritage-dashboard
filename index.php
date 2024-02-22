@@ -48,7 +48,7 @@
                         <input type="password" class="form-control" required name="password" placeholder="**********" autocomplete="current-password">
                     </div>
                     <div class="mt-7">
-                        <button type="submit" name="admin_login_btn" class="btn btn-dark w-100">Sign in</button>
+                        <button type="submit" name="admin_login_btn" class="btn btn-dark w-100" onclick="this.classList.toggle('button--loading')">Sign in</button>
                     </div>
                 </form>
             </div>

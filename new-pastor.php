@@ -1,7 +1,7 @@
 <?php
     $page = "New Pastor";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,30 +28,65 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Pastor's Name</label> 
-                                        <input class="form-control" placeholder="Pastor's name" value="Rev. Oje Ohiwerei" type="text">
+                                        <input class="form-control" name="pastorName" placeholder="Pastor's name" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
-                                        <label class="form-label">Branches</label> 
-                                        <select class="form-select">
-                                            <option>Abuja</option>
-                                            <option>Lagos</option>
-                                            <option>Benin</option>
-                                            <option>Port Harcourt</option>
+                                        <label class="form-label">Branch</label> 
+                                        <select class="form-select" name="branch">
+                                        <?php
+                                            $select_query = "SELECT * FROM tbl_branches";
+                                            $result = mysqli_query($conn, $select_query);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                                    $branchName = $row['branchName'];
+                                            ?>
+                                            <option value="<?php echo $branchName; ?>"><?php echo $branchName; ?></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Phone Number</label> 
-                                        <input class="form-control" placeholder="Phone number" value="08162680095" type="text">
+                                        <input class="form-control" name="phone" placeholder="Phone number" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="pastorPhotograph">Upload Pastor's Photograph</label>
-                                        <input type="file" class="form-control" id="pastorPhotograph">
+                                        <input type="file" name="photograph" class="form-control" id="pastorPhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Add New Pastor</button>
+                                        <button type="submit" name="add_new_pastor_btn" class="btn w-100 btn-lg btn-dark">Add New Pastor</button>
                                     </div>
                                 </form>
                             </div>

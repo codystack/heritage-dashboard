@@ -1,7 +1,7 @@
 <?php
     $page = "Pastors";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/delete.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -21,6 +21,33 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php
+                        if (isset($_SESSION['error_message'])) {
+                            ?>
+                            <div class="alert alert-danger mt-5 mb-5" role="alert">
+                                <div class="alert-message text-center">
+                                    <?php
+                                    echo $_SESSION['error_message'];
+                                    ?>
+                                </div>
+                            </div>
+                            <?php
+                            unset($_SESSION['error_message']);
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION['success_message'])) {
+                            ?>
+                            <div class="alert alert-success mt-5 mb-5" role="alert">
+                                <div class="alert-message text-center">
+                                    <?php echo $_SESSION['success_message']; ?>
+                                </div>
+                            </div>
+                            <?php
+                            unset($_SESSION['success_message']);
+                        }
+                    ?>
     
                     <div class="row g-3 g-xxl-6">
                         <div class="col-xxl-12">
@@ -44,29 +71,46 @@
                                                 </thead>
 
                                                 <tbody>
+                                                    <?php
+                                                    $select_query = "SELECT * FROM tbl_pastors ORDER BY dateCreated ASC";
+                                                        $result = mysqli_query($conn, $select_query);
+                                                        if (mysqli_num_rows($result) > 0) {
+                                                            // output data of each row
+                                                            while($row = mysqli_fetch_assoc($result)) {
+                                                                $id = $row['id'];
+                                                                $pastorName = $row['pastorName'];
+                                                                $branch = $row['branch'];
+                                                                $phone = $row['phone'];
+                                                                $dateCreated = $row['dateCreated'];
+                                                                $date = strtotime($dateCreated);
+                                                    ?>
                                                     <tr>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 ps-1">
                                                                 <div class="me-4">
                                                                     <img src="assets/img/memoji/memoji-2.svg" class="avatar rounded-circle">
                                                                 </div>
-                                                                <div><span class="d-block text-heading fw-bold">Rev. Oje Ohiwerei</span></div>
+                                                                <div><span class="d-block text-heading fw-bold"><?php echo $pastorName; ?></span></div>
                                                             </div>
                                                         </td>
-                                                        <td>Abuja Branch</td>
-                                                        <td>08162680095</td>
-                                                        <td>21 / 1 / 2024</td>
+                                                        <td><?php echo $branch; ?> Branch</td>
+                                                        <td><?php echo $phone; ?></td>
+                                                        <td><?php echo date('j F Y', $date); ?></td>
                                                         <td class="text-end">
                                                             <div class="dropdown">
                                                             <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
                                                                 <ul class="dropdown-menu dropdown-menu-xs">
-                                                                    <li><a class="dropdown-item" href="#" type="button" class="btn btn-neutral btn-sm" data-bs-toggle="modal" data-bs-target="#viewPastorModal"><i class="bi bi-eye me-2"></i>View</a></li>
-                                                                    <li><a class="dropdown-item" href="edit-pastor"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
-                                                                    <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 me-2"></i>Delete</a></li>
+                                                                    <li><button class="dropdown-item" type="button" data-id="<? echo $id; ?>" onclick="confirmPastorView(this);"><i class="bi bi-eye me-2"></i>View</button></li>
+                                                                    <li><a class="dropdown-item" href="edit-pastor?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
+                                                                    <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmPastorDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
                                                                 </ul>
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    <?php
+                                                            }
+                                                        }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -80,4 +124,8 @@
         </div>
     </div>
 
-<?php include "./components/footer.php"; ?>
+<?php 
+include "./components/modals.php";
+include "./components/delete-modals.php";
+include "./components/footer.php";
+?>

@@ -1,7 +1,7 @@
 <?php
     $page = "New Event";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,40 +28,66 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
-                                <div class="col-sm-6 mb-3">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
+                                    <div class="col-sm-6 mb-3">
                                         <label class="form-label">Title</label> 
-                                        <input class="form-control" placeholder="Title" type="text">
+                                        <input class="form-control" name="eventTitle" placeholder="Title" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Date of event</label> 
-                                        <input class="form-control" placeholder="Date of event" type="date">
+                                        <input class="form-control" name="eventDate" placeholder="Date of event" type="date">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Time of event</label> 
-                                        <input class="form-control" placeholder="Meeting day's" type="time">
+                                        <input class="form-control" name="eventTime" placeholder="Meeting day's" type="time">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Venue</label> 
-                                        <input class="form-control" placeholder="Venue" type="text">
+                                        <input class="form-control" name="eventVenue" placeholder="Venue" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="flyerUpload">Upload Flyer</label>
-                                        <input type="file" class="form-control" id="flyerUpload">
+                                        <input type="file" name="eventFlyer" class="form-control" id="flyerUpload">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Event Type</label> 
-                                        <select class="form-select">
+                                        <select class="form-select" name="eventType">
                                             <option>Event</option>
                                             <option>Article</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label> 
-                                        <textarea class="form-control" placeholder="Description" type="text"></textarea>
+                                        <textarea class="form-control" name="eventDescription" placeholder="Description" type="text"></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Add New Event</button>
+                                        <button type="submit" name="add_new_event_btn" class="btn w-100 btn-lg btn-dark">Add New Event</button>
                                     </div>
                                 </form>
                             </div>

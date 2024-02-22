@@ -125,3 +125,65 @@ if (isset($_POST['delete_media_btn'])) {
     }
 
 }
+
+
+// Delete Pastor script
+if (isset($_POST['delete_pastor_btn'])) {
+
+    $id = $_GET['id'];
+
+    $id = $conn->real_escape_string($_POST['id']);
+
+    $query = "DELETE FROM tbl_pastors WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_affected_rows($conn) > 0 ) {
+        $_SESSION['success_message'] = "Pastor deleted";
+        echo "<meta http-equiv='refresh' content='3; URL=pastors'>";
+    }else{
+        $_SESSION['error_message'] = "Error deleting pastor".mysqli_error($conn);
+    }
+
+}
+
+
+
+// Delete Devotional script
+if (isset($_POST['delete_devotional_btn'])) {
+
+    $id = $_GET['id'];
+
+    $id = $conn->real_escape_string($_POST['id']);
+
+    $query = "DELETE FROM tbl_devotionals WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_affected_rows($conn) > 0 ) {
+        $_SESSION['success_message'] = "Devotional deleted";
+        echo "<meta http-equiv='refresh' content='3; URL=devotionals'>";
+    }else{
+        $_SESSION['error_message'] = "Error deleting devotional".mysqli_error($conn);
+    }
+
+}
+
+
+
+// Delete Event script
+if (isset($_POST['delete_event_btn'])) {
+
+    $id = $_GET['id'];
+
+    $id = $conn->real_escape_string($_POST['id']);
+
+    $query = "DELETE FROM tbl_event WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_affected_rows($conn) > 0 ) {
+        $_SESSION['success_message'] = "Event deleted";
+        echo "<meta http-equiv='refresh' content='3; URL=events'>";
+    }else{
+        $_SESSION['error_message'] = "Error deleting event".mysqli_error($conn);
+    }
+
+}

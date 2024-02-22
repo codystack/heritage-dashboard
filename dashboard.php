@@ -14,12 +14,6 @@
                             <div class="col">
                                 <h1 class="ls-tight">Dashboard</h1>
                             </div>
-                            <div class="col">
-                                <div class="hstack gap-2 justify-content-end">
-                                    <button type="button" class="btn btn-sm btn-neutral d-none d-sm-inline-flex" data-bs-target="#depositLiquidityModal" data-bs-toggle="modal"><span class="pe-2"><i class="bi bi-plus-circle"></i> </span><span>Liquidity</span></button> 
-                                    <a href="page-overview.html" class="btn d-inline-flex btn-sm btn-dark"><span>Trade</span></a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
@@ -30,43 +24,119 @@
                                     <div class="col-md col-sm-6">
                                         <div class="card border-primary-hover">
                                             <div class="card-body p-4">
-                                                <div class="d-flex align-items-center gap-2"><img src="assets/img/crypto/icon/btc.svg" class="w-rem-5 flex-none" alt="..."> <a href="page-details.html" class="h6 stretched-link">BTC</a></div>
-                                                <div class="text-sm fw-semibold mt-3">3.2893 USDT</div>
-                                                <div class="d-flex align-items-center gap-2 mt-1 text-xs"><span class="badge badge-xs bg-success"><i class="bi bi-arrow-up-right"></i> </span><span>+13.7%</span></div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge badge-lg icon icon-lg icon-shape text-lg rounded-circle bg-danger text-white flex-none" alt="..."><i class="bi bi-download"></i></span> <span class="fw-bold">App Download</span>
+                                                </div>
+                                                <div class="text-m fw-semibold mt-3">3.2893</div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md col-sm-6">
                                         <div class="card border-primary-hover">
                                             <div class="card-body p-4">
-                                                <div class="d-flex align-items-center gap-2"><img src="assets/img/crypto/icon/ada.svg" class="w-rem-5 flex-none" alt="..."> <a href="page-details.html" class="h6 stretched-link">ADA</a></div>
-                                                <div class="text-sm fw-semibold mt-3">10.745,49 ADA</div>
-                                                <div class="d-flex align-items-center gap-2 mt-1 text-xs"><span class="badge badge-xs bg-danger"><i class="bi bi-arrow-up-right"></i> </span><span>-3.2%</span></div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge badge-lg icon icon-lg icon-shape text-lg rounded-circle bg-danger text-white flex-none" alt="..."><i class="bi bi-book"></i></span> <span class="fw-bold">Devotional</span>
+                                                </div>
+                                                <?php
+                                                $count_devotional = mysqli_query($conn, "SELECT id FROM tbl_devotionals");
+                                                echo "<div class='text-m fw-semibold mt-3'>".mysqli_num_rows($count_devotional)."</div>";
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md col-sm-6">
                                         <div class="card border-primary-hover">
                                             <div class="card-body p-4">
-                                                <div class="d-flex align-items-center gap-2"><img src="assets/img/crypto/icon/eos.svg" class="w-rem-5 flex-none" alt="..."> <a href="page-details.html" class="h6 stretched-link">EOS</a></div>
-                                                <div class="text-sm fw-semibold mt-3">7.890,00 EOS</div>
-                                                <div class="d-flex align-items-center gap-2 mt-1 text-xs"><span class="badge badge-xs bg-danger"><i class="bi bi-arrow-up-right"></i> </span><span>-2.2%</span></div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge badge-lg icon icon-lg icon-shape text-lg rounded-circle bg-danger text-white flex-none" alt="..."><i class="bi bi-stoplights"></i></span> <span class="fw-bold">Site Traffic</span>
+                                                </div>
+                                                <div class="text-m fw-semibold mt-3">3.2893</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-1 d-none d-md-block">
-                                        <div class="card h-md-100 d-flex flex-column align-items-center justify-content-center py-4 bg-body-secondary bg-opacity-75 bg-opacity-100-hover"><a href="#cryptoModal" class="stretched-link text-body-secondary" data-bs-toggle="modal"><i class="bi bi-plus-lg"></i></a></div>
+
+                                    <div class="col-md col-sm-6">
+                                        <div class="card border-primary-hover">
+                                            <div class="card-body p-4">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge badge-lg icon icon-lg icon-shape text-lg rounded-circle bg-danger text-white flex-none" alt="..."><i class="bi bi-people"></i></span> <span class="fw-bold">App Users</span>
+                                                </div>
+                                                <div class="text-m fw-semibold mt-3">3.2893</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <h5>Transaction History</h5>
+                                                <h5>Devotionals</h5>
                                             </div>
-                                            <div class="hstack align-items-center"><a href="#" class="text-muted"><i class="bi bi-arrow-repeat"></i></a></div>
+                                            <div class="hstack align-items-center">
+                                                <a href="devotionals" class="btn btn-sm btn-neutral d-none d-sm-inline-flex"> <span class="pe-2">View all</span><span> <i class="bi bi-arrow-right"></i></span></a>
+                                            </div>
                                         </div>
-                                        <div class="list-group list-group-flush">
+                                        <div class="table-responsive mb-10 mt-5">
+                                            <table class="table table-hover table-striped table-sm table-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">
+                                                            <div class="d-flex align-items-center gap-2 ps-1">
+                                                                <span>Topic</span>
+                                                            </div>
+                                                        </th>
+                                                        <th scope="col">Scripture</th>
+                                                        <th scope="col">Memory Verse</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col" class="d-none text-end d-xl-table-cell">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php
+                                                    $select_query = "SELECT * FROM tbl_devotionals ORDER BY dateCreated DESC LIMIT 10";
+                                                        $result = mysqli_query($conn, $select_query);
+                                                        if (mysqli_num_rows($result) > 0) {
+                                                            // output data of each row
+                                                            while($row = mysqli_fetch_assoc($result)) {
+                                                                $id = $row['id'];
+                                                                $topic = $row['topic'];
+                                                                $scripture = $row['scripture'];
+                                                                $memoryVerse = $row['memoryVerse'];
+                                                                $dateCreated = $row['dateCreated'];
+                                                                $date = strtotime($dateCreated);
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 ps-1">
+                                                                <div class="d-xl-inline-flex icon icon-shape w-rem-8 h-rem-8 rounded-circle text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-book-fill"></i></div>
+                                                                <div><span class="d-block text-heading fw-bold"><?php echo $topic; ?></span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td><?php echo $scripture; ?></td>
+                                                        <td><?php echo $memoryVerse; ?></td>
+                                                        <td><?php echo date('j F Y', $date); ?></td>
+                                                        <td class="text-end">
+                                                            <div class="dropdown">
+                                                            <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                                                                <ul class="dropdown-menu dropdown-menu-xs">
+                                                                    <li><a class="dropdown-item" href="#" type="button" class="btn btn-neutral btn-sm" data-bs-toggle="modal" data-bs-target="#viewDevotionalModal"><i class="bi bi-eye me-2"></i>View</a></li>
+                                                                    <li><a class="dropdown-item" href="edit-devotional?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
+                                                                    <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmDevotionalDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                            }
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- <div class="list-group list-group-flush">
                                             <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
                                                 <div class="d-flex align-items-center gap-3">
                                                     <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
@@ -76,61 +146,7 @@
                                                 <div class="d-none d-md-block"><span class="badge bg-body-secondary text-warning">Pending</span></div>
                                                 <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
                                             </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Cardano </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Binance </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-success">Successful</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-warning">Pending</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-success">Successful</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-success">Successful</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

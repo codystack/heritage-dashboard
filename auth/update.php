@@ -94,7 +94,6 @@ $id = $_GET['id'];
     }
 
 
-
     //Update Category Query
     if (isset($_POST['update_category_btn'])) {
 
@@ -146,6 +145,147 @@ $id = $_GET['id'];
             echo "<meta http-equiv='refresh' content='3; URL=branches'>";
         } else {
             $_SESSION['error_message'] = "Error updating branch.".mysqli_error($conn);
+        }
+
+    }
+
+
+    //Update Media Query
+    if (isset($_POST['update_media_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $messageTitle = $conn->real_escape_string($_POST['messageTitle']);
+        $preacher = $conn->real_escape_string($_POST['preacher']);
+        $category = $conn->real_escape_string($_POST['category']);
+        $date = $conn->real_escape_string($_POST['date']);
+        $description = $conn->real_escape_string($_POST['description']);
+        $audioLink = $conn->real_escape_string($_POST['audioLink']);
+        $youtubeLink = $conn->real_escape_string($_POST['youtubeLink']);
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_media where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_media SET messageTitle='$messageTitle', preacher='$preacher', category='$category', date='$date', description='$description', audioLink='$audioLink', youtubeLink='$youtubeLink' WHERE id='$id'");
+            $_SESSION['success_message'] = "media updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=media'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating media.".mysqli_error($conn);
+        }
+
+    }
+
+
+    //Update Pastor Query
+    if (isset($_POST['update_pastor_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $pastorName = $conn->real_escape_string($_POST['pastorName']);
+        $branch = $conn->real_escape_string($_POST['branch']);
+        $phone = $conn->real_escape_string($_POST['phone']);
+        $photograph_path = $conn->real_escape_string('upload/'.$_FILES['photograph']['name']);
+
+        if (file_exists($photograph_path)){
+            $photograph_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['photograph']['name']);
+        }
+
+        $checker = 0;
+
+        //make sure file type is image
+        if (preg_match("!image!", $_FILES['photograph']['type'])) {
+            $checker ++;
+        }
+        if ($checker < 1){
+            exit;
+        }
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_pastors where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_pastors SET pastorName='$pastorName', branch='$branch', phone='$phone', photograph='$photograph_path' WHERE id='$id'");
+            //copy image to upload folder
+            copy($_FILES['photograph']['tmp_name'], $photograph_path);
+            $_SESSION['success_message'] = "Pastor updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=pastors'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating pastor.".mysqli_error($conn);
+        }
+
+    }
+
+
+    //Update Devotional Query
+    if (isset($_POST['update_devotional_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $topic = $conn->real_escape_string($_POST['topic']);
+        $scripture = $conn->real_escape_string($_POST['scripture']);
+        $memoryVerse = $conn->real_escape_string($_POST['memoryVerse']);
+        $firstParagraph = $conn->real_escape_string($_POST['firstParagraph']);
+        $secondParagraph = $conn->real_escape_string($_POST['secondParagraph']);
+        $thirdParagraph = $conn->real_escape_string($_POST['thirdParagraph']);
+        $prayer = $conn->real_escape_string($_POST['prayer']);
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_devotionals where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_devotionals SET topic='$topic', scripture='$scripture', memoryVerse='$memoryVerse', firstParagraph='$firstParagraph', secondParagraph='$secondParagraph', thirdParagraph='$thirdParagraph', prayer='$prayer' WHERE id='$id'");
+            $_SESSION['success_message'] = "Devotional updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=devotionals'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating devotional.".mysqli_error($conn);
+        }
+
+    }
+
+
+    //Update Event Query
+    if (isset($_POST['update_event_btn'])) {
+
+        $id = $_GET['id'];
+
+        $id = $conn->real_escape_string($_POST['id']);
+        $eventTitle = $conn->real_escape_string($_POST['eventTitle']);
+        $eventDate = $conn->real_escape_string($_POST['eventDate']);
+        $eventTime = $conn->real_escape_string($_POST['eventTime']);
+        $eventVenue = $conn->real_escape_string($_POST['eventVenue']);
+        $eventType = $conn->real_escape_string($_POST['eventType']);
+        $eventDescription = $conn->real_escape_string($_POST['eventDescription']);
+        $eventFlyer_path = $conn->real_escape_string('upload/'.$_FILES['eventFlyer']['name']);
+
+        if (file_exists($eventFlyer_path)){
+            $eventFlyer_path = $conn->real_escape_string('upload/'.uniqid().rand().$_FILES['eventFlyer']['name']);
+        }
+
+        $checker = 0;
+
+        //make sure file type is image
+        if (preg_match("!image!", $_FILES['eventFlyer']['type'])) {
+            $checker ++;
+        }
+        if ($checker < 1){
+            exit;
+        }
+
+
+        $sql=mysqli_query($conn,"SELECT * FROM tbl_event where id='$id'");
+        $result=mysqli_fetch_array($sql);
+        if($result>0){
+            $conn=mysqli_query($conn,"UPDATE tbl_event SET eventTitle='$eventTitle', eventDate='$eventDate', eventTime='$eventTime', eventVenue='$eventVenue', eventType='$eventType', eventDescription='$eventDescription', eventFlyer='$eventFlyer_path' WHERE id='$id'");
+            //copy image to upload folder
+            copy($_FILES['eventFlyer']['tmp_name'], $eventFlyer_path);
+            $_SESSION['success_message'] = "Event updated 👍";
+            echo "<meta http-equiv='refresh' content='3; URL=events'>";
+        } else {
+            $_SESSION['error_message'] = "Error updating event.".mysqli_error($conn);
         }
 
     }

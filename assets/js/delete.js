@@ -50,3 +50,30 @@ function confirmMediaDelete(self) {
     document.getElementById("form-delete-media").id.value = id;
     $("#mediaDeleteModal").modal("show");
 }
+
+
+//Pastor Delete Trigger
+function confirmPastorDelete(self) {
+    var id = self.getAttribute("data-id");
+
+    document.getElementById("form-delete-pastor").id.value = id;
+    $("#pastorDeleteModal").modal("show");
+}
+
+
+//Devotional Delete Trigger
+function confirmDevotionalDelete(self) {
+    var id = self.getAttribute("data-id");
+
+    document.getElementById("form-delete-devotional").id.value = id;
+    $("#devotionalDeleteModal").modal("show");
+}
+
+
+//Event Delete Trigger
+function confirmEventDelete(self) {
+    var id = self.getAttribute("data-id");
+
+    document.getElementById("form-delete-event").id.value = id;
+    $("#eventDeleteModal").modal("show");
+}

@@ -1,7 +1,7 @@
 <?php
     $page = "New Devotional";
     include "./components/header.php";
-    include "./components/modals.php";
+    require_once "./auth/queries.php";
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -28,37 +28,63 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body pb-0">
-                                <form class="row mb-5 mt-5">
+                                <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        ?>
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php
+                                                echo $_SESSION['error_message'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['error_message']);
+                                    }
+                                ?>
+                                <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        ?>
+                                        <div class="alert alert-success mt-5" role="alert">
+                                            <div class="alert-message text-center">
+                                                <?php echo $_SESSION['success_message']; ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['success_message']);
+                                    }
+                                ?>
+                                <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Topic</label> 
-                                        <input class="form-control" placeholder="Topic" type="text">
+                                        <input class="form-control" placeholder="Topic" name="topic" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Scripture</label> 
-                                        <input class="form-control" placeholder="Scripture" type="text">
+                                        <input class="form-control" placeholder="Scripture" name="scripture" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Memory verse</label> 
-                                        <input class="form-control" placeholder="Meeting day's" type="text">
+                                        <input class="form-control" placeholder="Meeting day's" name="memoryVerse" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">1st Paragraph</label> 
-                                        <textarea class="form-control" placeholder="1st Paragraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" placeholder="1st Paragraph" name="firstParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">2nd Paragraph</label> 
-                                        <textarea class="form-control" placeholder="2nd Paragraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" placeholder="2nd Paragraph" name="secondParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">3rd Paragraph</label> 
-                                        <textarea class="form-control" placeholder="3rd Paragraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" placeholder="3rd Paragraph" name="thirdParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Prayer</label> 
-                                        <textarea class="form-control" placeholder="Prayer" row="7" type="text"></textarea>
+                                        <textarea class="form-control" placeholder="Prayer" name="prayer" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" class="btn w-100 btn-lg btn-dark">Add New Devotional</button>
+                                        <button type="submit" name="add_new_devotional_btn" class="btn w-100 btn-lg btn-dark">Add New Devotional</button>
                                     </div>
                                 </form>
                             </div>

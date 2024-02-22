@@ -4,38 +4,10 @@
     <script src="assets/js/datatable.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/delete.js"></script>
+    <script src="assets/js/view.js"></script>
     <script src="assets/js/switcher.js"></script>
 
-    <!-- View Name Search Modal -->
-    <script>
-        $(document).ready(function(){
-            $('.admindata').click(function(){
-            
-                var namesearchid = $(this).data('id');
-                
-                // AJAX request
-                $.ajax({
-                    url: './view.php',
-                    type: 'post',
-                    data: {namesearchid: namesearchid},
-                    success: function(response){ 
-                        // Add response in Modal body
-                        $('.modal-body').html(response);
-                        // Display Modal
-                        $('#viewNameSearchModal').modal('show'); 
-                    }
-                });
-            });
-        });
-	</script>
-    <!-- View Name Search Modal -->
 
-
-    <!-- <script>
-        $(document).ready(function(){
-            $("#userDeleteModal").modal('show');
-        });
-    </script> -->
 
     <script>
         new DataTable('#branches');
