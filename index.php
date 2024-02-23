@@ -48,7 +48,9 @@
                         <input type="password" class="form-control" required name="password" placeholder="**********" autocomplete="current-password">
                     </div>
                     <div class="mt-7">
-                        <button type="submit" name="admin_login_btn" class="btn btn-dark w-100" onclick="this.classList.toggle('button--loading')">Sign in</button>
+                        <button type="submit" name="admin_login_btn" class="button btn btn-dark w-100" onclick="this.classList.toggle('button--loading')">
+                            <span class="button__text">Sign in</span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -57,9 +59,17 @@
     <script src="assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        const btn = document.querySelector(".button");
+
+        btn.classList.add("button--loading");
+        btn.classList.remove("button--loading");
+    </script>
+
     <?php
         if (isset($_SESSION['success_message']))
         {
+            
     ?>
         <script>
             Swal.fire({
