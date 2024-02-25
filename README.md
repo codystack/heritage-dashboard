@@ -6,6 +6,7 @@
 3. Update the database connection, you will find it in the config folder in the root folder.
 
 --------------------------------------------------
+
 Using the demo database, find the demo login details below.
 
 Username: demo<br>
