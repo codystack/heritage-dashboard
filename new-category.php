@@ -57,10 +57,12 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="mb-3">
                                         <label class="form-label">Category Name</label> 
-                                        <input class="form-control" name="category" placeholder="Title" type="text">
+                                        <input class="form-control" required name="category" placeholder="Title" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_category_btn" class="btn w-100 btn-lg btn-dark">Add New Category</button>
+                                        <button type="submit" name="add_new_category_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Category</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

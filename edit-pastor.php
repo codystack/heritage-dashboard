@@ -104,7 +104,9 @@
                                         <input type="file" name="photograph" class="form-control" id="pastorPhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_pastor_btn" class="btn w-100 btn-lg btn-dark">Update Pastor's Information</button>
+                                        <button type="submit" name="update_pastor_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Pastor's Information</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

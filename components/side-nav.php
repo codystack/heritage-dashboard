@@ -23,7 +23,7 @@
                     </div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="profile"><i class="bi bi-person-gear me-3"></i>Profile</a>
-                    <a class="dropdown-item" href="settings"><i class="bi bi-gear me-3"></i>Settings </a>
+                    <a class="dropdown-item" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>" href="settings"><i class="bi bi-gear me-3"></i>Settings </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout"><i class="bi bi-box-arrow-left me-3"></i>Logout</a>
                 </div>
@@ -109,7 +109,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item my-1">
+                <li class="nav-item my-1" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>">
                     <a class="nav-link d-flex align-items-center rounded-pill <?php if($page=='Users'){echo 'active';}?>" href="users"><i class="bi bi-people-fill"></i> <span>Users</span> 
                         <span class="badge badge-sm rounded-pill me-n2 bg-success-subtle text-success ms-auto"></span>
                     </a>
@@ -128,7 +128,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item my-1">
+                <li class="nav-item my-1" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>">
                     <a class="nav-link d-flex align-items-center rounded-pill <?php if($page=='Settings'){echo 'active';}?>" href="settings"><i class="bi bi-gear-fill"></i> <span>Settings</span> 
                         <span class="badge badge-sm rounded-pill me-n2 bg-success-subtle text-success ms-auto d-none">🔥 Hot</span>
                     </a>

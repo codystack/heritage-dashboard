@@ -81,6 +81,7 @@
                                                                 $pastorName = $row['pastorName'];
                                                                 $branch = $row['branch'];
                                                                 $phone = $row['phone'];
+                                                                $photograph = $row['photograph'];
                                                                 $dateCreated = $row['dateCreated'];
                                                                 $date = strtotime($dateCreated);
                                                     ?>
@@ -88,7 +89,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 ps-1">
                                                                 <div class="me-4">
-                                                                    <img src="assets/img/memoji/memoji-2.svg" class="avatar rounded-circle">
+                                                                    <img src="<?php echo $photograph; ?>" class="avatar rounded-circle">
                                                                 </div>
                                                                 <div><span class="d-block text-heading fw-bold"><?php echo $pastorName; ?></span></div>
                                                             </div>
@@ -100,7 +101,7 @@
                                                             <div class="dropdown">
                                                             <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
                                                                 <ul class="dropdown-menu dropdown-menu-xs">
-                                                                    <li><button class="dropdown-item" type="button" data-id="<? echo $id; ?>" onclick="confirmPastorView(this);"><i class="bi bi-eye me-2"></i>View</button></li>
+                                                                    <li><a href="#" class="view_pastor dropdown-item" id="<? echo $id; ?>"><i class="bi bi-eye me-2"></i>View</a></li>
                                                                     <li><a class="dropdown-item" href="edit-pastor?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
                                                                     <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmPastorDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
                                                                 </ul>

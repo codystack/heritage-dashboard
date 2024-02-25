@@ -120,7 +120,9 @@
                                         <input class="form-control" name="youtubeLink" value="<?php echo $youtubeLink; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_media_btn" class="btn w-100 btn-lg btn-dark">Update Media</button>
+                                        <button type="submit" name="update_media_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Media</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

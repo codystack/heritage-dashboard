@@ -3,6 +3,12 @@
     include "./components/header.php";
     require_once "./auth/update.php";
 
+    if ($_SESSION['designation'] == "Admin") {
+        $_SESSION['admin_error_message'] = "You're not authorised to access this page";
+    }else {
+
+    }
+
     $id = $_GET['id'];
     $select_query = "SELECT * FROM tbl_settings WHERE id='$id'";
     $result = mysqli_query($conn, $select_query);
@@ -80,7 +86,9 @@
                                         <input class="form-control" placeholder="Value" name="value" value="<?php echo $value; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_setting_btn" class="btn w-100 btn-lg btn-dark">Update Settings</button>
+                                        <button type="submit" name="update_setting_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Settings</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

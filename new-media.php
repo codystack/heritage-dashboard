@@ -57,15 +57,15 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Message Title</label> 
-                                        <input class="form-control" name="messageTitle" placeholder="Message Title" type="text">
+                                        <input class="form-control" required name="messageTitle" placeholder="Message Title" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Preacher</label> 
-                                        <input class="form-control" name="preacher" placeholder="Preacher" type="text">
+                                        <input class="form-control" required name="preacher" placeholder="Preacher" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Category</label> 
-                                        <select class="form-select" name="category">
+                                        <select class="form-select" required name="category">
                                             <?php
                                             $select_query = "SELECT * FROM tbl_categories";
                                             $result = mysqli_query($conn, $select_query);
@@ -85,22 +85,24 @@
                                     
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Date</label> 
-                                        <input class="form-control" name="date" placeholder="Date" type="date">
+                                        <input class="form-control" required name="date" placeholder="Date" type="date">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label> 
-                                        <textarea class="form-control" name="description" placeholder="Description" type="text"></textarea>
+                                        <textarea class="form-control" required name="description" placeholder="Description" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Audio Link</label> 
-                                        <input class="form-control" name="audioLink" placeholder="Audio Link" type="text">
+                                        <input class="form-control" required name="audioLink" placeholder="Audio Link" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Youtube Link</label> 
-                                        <input class="form-control" name="youtubeLink" placeholder="Youtube Link" type="text">
+                                        <input class="form-control" required name="youtubeLink" placeholder="Youtube Link" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_media_btn" class="btn w-100 btn-lg btn-dark">Add New Media</button>
+                                        <button type="submit" name="add_new_media_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Media</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

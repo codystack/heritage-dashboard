@@ -57,34 +57,36 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Topic</label> 
-                                        <input class="form-control" placeholder="Topic" name="topic" type="text">
+                                        <input class="form-control" required placeholder="Topic" name="topic" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Scripture</label> 
-                                        <input class="form-control" placeholder="Scripture" name="scripture" type="text">
+                                        <input class="form-control" required placeholder="Scripture" name="scripture" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Memory verse</label> 
-                                        <input class="form-control" placeholder="Meeting day's" name="memoryVerse" type="text">
+                                        <input class="form-control" required placeholder="Meeting day's" name="memoryVerse" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">1st Paragraph</label> 
-                                        <textarea class="form-control" placeholder="1st Paragraph" name="firstParagraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" required placeholder="1st Paragraph" name="firstParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">2nd Paragraph</label> 
-                                        <textarea class="form-control" placeholder="2nd Paragraph" name="secondParagraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" required placeholder="2nd Paragraph" name="secondParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">3rd Paragraph</label> 
-                                        <textarea class="form-control" placeholder="3rd Paragraph" name="thirdParagraph" row="7" type="text"></textarea>
+                                        <textarea class="form-control" required placeholder="3rd Paragraph" name="thirdParagraph" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Prayer</label> 
-                                        <textarea class="form-control" placeholder="Prayer" name="prayer" row="7" type="text"></textarea>
+                                        <textarea class="form-control" required placeholder="Prayer" name="prayer" row="7" type="text"></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_devotional_btn" class="btn w-100 btn-lg btn-dark">Add New Devotional</button>
+                                        <button type="submit" name="add_new_devotional_btn" class="button btn w-100 btn-lg btn-dark"  onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Devotional</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

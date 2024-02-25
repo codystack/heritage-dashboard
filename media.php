@@ -97,7 +97,7 @@
                                                             <div class="dropdown">
                                                             <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
                                                                 <ul class="dropdown-menu dropdown-menu-xs">
-                                                                    <li><a class="dropdown-item" href="#" type="button" class="btn btn-neutral btn-sm" data-bs-toggle="modal" data-bs-target="#viewMediaModal"><i class="bi bi-eye me-2"></i>View</a></li>
+                                                                    <li><a href="#" class="view_media dropdown-item" id="<? echo $id; ?>"><i class="bi bi-eye me-2"></i>View</a></li>
                                                                     <li><a class="dropdown-item" href="edit-media?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
                                                                     <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmMediaDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
                                                                 </ul>

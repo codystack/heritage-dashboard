@@ -105,7 +105,9 @@
                                         <textarea class="form-control" name="prayer" row="7" type="text"><?php echo $prayer; ?></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_devotional_btn" class="btn w-100 btn-lg btn-dark">Update Devotional</button>
+                                        <button type="submit" name="button update_devotional_btn" class="btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Devotional</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

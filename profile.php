@@ -31,7 +31,7 @@
                         <ul class="nav nav-tabs nav-tabs-flush gap-6 overflow-x border-0 mt-4">
                             <li class="nav-item"><a href="profile" class="nav-link active">General</a></li>
                             <li class="nav-item"><a href="security" class="nav-link">Password</a></li>
-                            <li class="nav-item"><a href="admins" class="nav-link">Admins</a></li>
+                            <li class="nav-item" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>"><a href="admins" class="nav-link">Admin Users</a></li>
                         </ul>
                     </header>
                     <div class="row align-items-center">

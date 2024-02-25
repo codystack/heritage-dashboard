@@ -122,7 +122,7 @@
                                                             <div class="dropdown">
                                                             <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
                                                                 <ul class="dropdown-menu dropdown-menu-xs">
-                                                                    <li><a class="dropdown-item" href="#" type="button" class="btn btn-neutral btn-sm" data-bs-toggle="modal" data-bs-target="#viewDevotionalModal"><i class="bi bi-eye me-2"></i>View</a></li>
+                                                                    <li><a href="#" class="view_devotional dropdown-item" id="<? echo $id; ?>"><i class="bi bi-eye me-2"></i>View</a></li>
                                                                     <li><a class="dropdown-item" href="edit-devotional?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
                                                                     <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmDevotionalDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
                                                                 </ul>
@@ -136,17 +136,6 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- <div class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary"><i class="bi bi-send-fill"></i></div>
-                                                    <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span class="d-none d-sm-block text-muted text-xs">2 days ago</span></div>
-                                                </div>
-                                                <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                <div class="d-none d-md-block"><span class="badge bg-body-secondary text-warning">Pending</span></div>
-                                                <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>

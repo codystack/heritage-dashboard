@@ -19,7 +19,7 @@
                         <ul class="nav nav-tabs nav-tabs-flush gap-6 overflow-x border-0 mt-4">
                             <li class="nav-item"><a href="profile" class="nav-link">General</a></li>
                             <li class="nav-item"><a href="security" class="nav-link active">Password</a></li>
-                            <li class="nav-item"><a href="admins" class="nav-link">Admins</a></li>
+                            <li class="nav-item" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>"><a href="admins" class="nav-link">Admin Users</a></li>
                         </ul>
                     </header>
 
@@ -91,8 +91,10 @@
                             </div>
                         </div>
                         <hr class="my-6 ">
-                        <div class="d-flex justify-content-end gap-2 mb-6">
-                            <button type="submit" name="password_change_btn" class="btn btn-lg btn-dark">Update Password</button>
+                        <div class="justify-content-end gap-2 mb-6">
+                            <button type="submit" name="password_change_btn" class="button btn btn-lg btn-dark w-100" onclick="this.classList.toggle('button--loading')">
+                                <span class="button__text">Update Password</span>
+                            </button>
                         </div>
                     </form>
                 </main>

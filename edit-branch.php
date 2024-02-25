@@ -136,7 +136,9 @@
                                         <input class="form-control" name="latitude" value="<?php echo $latitude; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_branch_btn" class="btn w-100 btn-lg btn-dark">Update Branch</button>
+                                        <button type="submit" name="update_branch_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Branch</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

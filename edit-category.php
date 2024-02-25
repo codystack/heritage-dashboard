@@ -75,7 +75,9 @@
                                         <input class="form-control" placeholder="Category Name" name="category" value="<?php echo $category; ?>" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_category_btn" class="btn w-100 btn-lg btn-dark">Update Category</button>
+                                        <button type="submit" name="update_category_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Category</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

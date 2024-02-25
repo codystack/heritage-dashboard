@@ -2,6 +2,12 @@
     $page = "Profile";
     include "./components/header.php";
     require_once "./auth/delete.php";
+
+    if ($_SESSION['designation'] == "Admin") {
+        $_SESSION['admin_error_message'] = "You're not authorised to access this page";
+    }else {
+
+    }
 ?>
 
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
@@ -24,7 +30,7 @@
                         <ul class="nav nav-tabs nav-tabs-flush gap-6 overflow-x border-0 mt-4">
                             <li class="nav-item"><a href="profile" class="nav-link">General</a></li>
                             <li class="nav-item"><a href="security" class="nav-link">Password</a></li>
-                            <li class="nav-item"><a href="admins" class="nav-link active">Admin Users</a></li>
+                            <li class="nav-item" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>"><a href="admins" class="nav-link active">Admin Users</a></li>
                         </ul>
                     </header>
 
@@ -121,7 +127,7 @@
                                                             <div class="dropdown">
                                                             <button type="button" class="btn btn-sm btn-square btn-neutral w-rem-6 h-rem-6" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
                                                                 <ul class="dropdown-menu dropdown-menu-xs">
-                                                                    <li><a class="dropdown-item" type="button" class="btn btn-neutral btn-sm admindata" data-id="<?php echo $id;?>"><i class="bi bi-eye me-2"></i>View</a></li>
+                                                                    <li><a href="#" class="view_admin dropdown-item" id="<? echo $id; ?>"><i class="bi bi-eye me-2"></i>View</a></li>
                                                                     <li><a class="dropdown-item" href="edit-admin?id=<? echo $id; ?>"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
                                                                     <li><button type="button" class="dropdown-item" data-id="<? echo $id; ?>" onclick="confirmDelete(this);"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
                                                                 </ul>

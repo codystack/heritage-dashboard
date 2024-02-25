@@ -57,58 +57,60 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="mb-3">
                                         <label class="form-label">Branch Name</label> 
-                                        <input class="form-control" name="branchName" placeholder="Branch name" type="text">
+                                        <input class="form-control" required name="branchName" placeholder="Branch name" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Day's</label> 
-                                        <input class="form-control" name="firstMeetingDay" placeholder="Meeting day's" type="text">
+                                        <input class="form-control" required name="firstMeetingDay" placeholder="Meeting day's" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Activity</label> 
-                                        <input class="form-control" name="firstMeetingActivity" placeholder="1st Activity" type="text">
+                                        <input class="form-control"required name="firstMeetingActivity" placeholder="1st Activity" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">1st Meeting Time</label> 
-                                        <input class="form-control" name="firstMeetingTime" placeholder="1st Activity"type="time">
+                                        <input class="form-control" required name="firstMeetingTime" placeholder="1st Activity"type="time">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Day's</label> 
-                                        <input class="form-control" name="secondMeetingDay" placeholder="Meeting day's" type="text">
+                                        <input class="form-control" required name="secondMeetingDay" placeholder="Meeting day's" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Activity</label> 
-                                        <input class="form-control" name="secondMeetingActivity" placeholder="2nd Activity" type="text">
+                                        <input class="form-control" required name="secondMeetingActivity" placeholder="2nd Activity" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">2nd Meeting Time</label> 
-                                        <input class="form-control" name="secondMeetingTime" placeholder="2nd Activity" type="time">
+                                        <input class="form-control" required name="secondMeetingTime" placeholder="2nd Activity" type="time">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Day's</label> 
-                                        <input class="form-control" name="thirdMeetingDay" placeholder="Meeting day's" type="text">
+                                        <input class="form-control" required name="thirdMeetingDay" placeholder="Meeting day's" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Activity</label> 
-                                        <input class="form-control" name="thirdMeetingActivity" placeholder="1st Activity" type="text">
+                                        <input class="form-control" required name="thirdMeetingActivity" placeholder="1st Activity" type="text">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label class="form-label">3rd Meeting Time</label> 
-                                        <input class="form-control" name="thirdMeetingTime" placeholder="1st Activity" type="time">
+                                        <input class="form-control" required name="thirdMeetingTime" placeholder="1st Activity" type="time">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Address</label> 
-                                        <textarea class="form-control" name="address" placeholder="Address" row="5" type="text"></textarea>
+                                        <textarea class="form-control" required name="address" placeholder="Address" row="5" type="text"></textarea>
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Longitude</label> 
-                                        <input class="form-control" name="longitude" placeholder="Longitude" type="text">
+                                        <input class="form-control" required name="longitude" placeholder="Longitude" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Latitude</label> 
-                                        <input class="form-control" name="latitude" placeholder="Latitude" type="text">
+                                        <input class="form-control" required name="latitude" placeholder="Latitude" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_branch_btn" class="btn w-100 btn-lg btn-dark">Add New Branch</button>
+                                        <button type="submit" name="add_new_branch_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Branch</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

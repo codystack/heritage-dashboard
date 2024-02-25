@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="flyerUpload">Upload Flyer</label>
-                                        <input type="file" name="eventFlyer" value="<?php echo $eventFlyer; ?>" required  class="form-control" id="flyerUpload">
+                                        <input type="file" required name="eventFlyer" value="<?php echo $eventFlyer; ?>" required  class="form-control" id="flyerUpload">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Event Type</label> 
@@ -109,7 +109,9 @@
                                         <textarea class="form-control" name="eventDescription" placeholder="Description" type="text"><?php echo $eventDescription; ?></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_event_btn" class="btn w-100 btn-lg btn-dark">Update Event</button>
+                                        <button type="submit" name="update_event_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Event</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

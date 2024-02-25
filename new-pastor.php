@@ -57,11 +57,11 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Pastor's Name</label> 
-                                        <input class="form-control" name="pastorName" placeholder="Pastor's name" type="text">
+                                        <input class="form-control" required name="pastorName" placeholder="Pastor's name" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Branch</label> 
-                                        <select class="form-select" name="branch">
+                                        <select class="form-select" required name="branch">
                                         <?php
                                             $select_query = "SELECT * FROM tbl_branches";
                                             $result = mysqli_query($conn, $select_query);
@@ -79,14 +79,16 @@
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Phone Number</label> 
-                                        <input class="form-control" name="phone" placeholder="Phone number" type="text">
+                                        <input class="form-control" required name="phone" placeholder="Phone number" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="pastorPhotograph">Upload Pastor's Photograph</label>
-                                        <input type="file" name="photograph" class="form-control" id="pastorPhotograph">
+                                        <input type="file" required name="photograph" class="form-control" id="pastorPhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_pastor_btn" class="btn w-100 btn-lg btn-dark">Add New Pastor</button>
+                                        <button type="submit" name="add_new_pastor_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Pastor</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

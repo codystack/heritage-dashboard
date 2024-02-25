@@ -2,6 +2,12 @@
     $page = "Settings";
     include "./components/header.php";
     require_once "./auth/queries.php";
+
+    if ($_SESSION['designation'] == "Admin") {
+        $_SESSION['admin_error_message'] = "You're not authorised to access this page";
+    }else {
+
+    }
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -57,14 +63,16 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Title</label> 
-                                        <input class="form-control" name="title" placeholder="Title" type="text">
+                                        <input class="form-control" required name="title" placeholder="Title" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Value</label> 
-                                        <input class="form-control" name="value" placeholder="Value" type="text">
+                                        <input class="form-control" required name="value" placeholder="Value" type="text">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_settings_btn" class="btn w-100 btn-lg btn-dark">Add New Settings</button>
+                                        <button type="submit" name="add_new_settings_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Settings</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

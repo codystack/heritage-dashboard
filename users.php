@@ -2,6 +2,12 @@
     $page = "Users";
     include "./components/header.php";
     include "./components/modals.php";
+
+    if ($_SESSION['designation'] == "Admin") {
+        $_SESSION['admin_error_message'] = "You're not authorised to access this page";
+    }else {
+
+    }
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>

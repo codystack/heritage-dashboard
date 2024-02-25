@@ -22,7 +22,7 @@
 
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="profile"><i class="bi bi-person-gear me-3"></i>Profile</a>
-                <a class="dropdown-item" href="settings"><i class="bi bi-gear me-3"></i>Settings </a>
+                <a class="dropdown-item" style="display: <?php if($_SESSION['designation'] == "Admin"){echo 'none';}?>" href="settings"><i class="bi bi-gear me-3"></i>Settings </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout"><i class="bi bi-box-arrow-left me-3"></i>Logout</a>
             </div>

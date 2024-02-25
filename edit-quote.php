@@ -77,10 +77,12 @@
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="quotePhotograph">Upload Quote Photograph</label>
-                                        <input type="file" class="form-control" name="link" id="quotePhotograph">
+                                        <input type="file" required class="form-control" name="link" id="quotePhotograph">
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="update_quote_btn" class="btn w-100 btn-lg btn-dark">Update Quote</button>
+                                        <button type="submit" name="update_quote_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Update Quote</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

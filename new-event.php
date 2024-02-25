@@ -57,37 +57,41 @@
                                 <form class="row mb-5 mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Title</label> 
-                                        <input class="form-control" name="eventTitle" placeholder="Title" type="text">
+                                        <input class="form-control" required name="eventTitle" placeholder="Title" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Date of event</label> 
-                                        <input class="form-control" name="eventDate" placeholder="Date of event" type="date">
+                                        <input class="form-control" required name="eventDate" placeholder="Date of event" type="date">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Time of event</label> 
-                                        <input class="form-control" name="eventTime" placeholder="Meeting day's" type="time">
+                                        <input class="form-control" required name="eventTime" placeholder="Meeting day's" type="time">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Venue</label> 
-                                        <input class="form-control" name="eventVenue" placeholder="Venue" type="text">
+                                        <input class="form-control" required name="eventVenue" placeholder="Venue" type="text">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label" for="flyerUpload">Upload Flyer</label>
-                                        <input type="file" name="eventFlyer" class="form-control" id="flyerUpload">
+                                        <input type="file" required name="eventFlyer" class="form-control" id="flyerUpload">
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Event Type</label> 
-                                        <select class="form-select" name="eventType">
+                                        <select class="form-select" required name="eventType">
                                             <option>Event</option>
                                             <option>Article</option>
+                                            <option>Banner</option>
+                                            <option>Banner & Event</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label> 
-                                        <textarea class="form-control" name="eventDescription" placeholder="Description" type="text"></textarea>
+                                        <textarea class="form-control" required name="eventDescription" placeholder="Description" type="text"></textarea>
                                     </div>
                                     <div class="mt-5 mb-10">
-                                        <button type="submit" name="add_new_event_btn" class="btn w-100 btn-lg btn-dark">Add New Event</button>
+                                        <button type="submit" name="add_new_event_btn" class="button btn w-100 btn-lg btn-dark"  onclick="this.classList.toggle('button--loading')">
+                                            <span class="button__text">Add New Event</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

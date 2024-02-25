@@ -2,6 +2,12 @@
     $page = "Profile";
     include "./components/header.php";
     require_once "./auth/queries.php";
+
+    if ($_SESSION['designation'] == "Admin") {
+        $_SESSION['admin_error_message'] = "You're not authorised to access this page";
+    }else {
+
+    }
 ?>
     <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
         <?php include "./components/side-nav.php"; ?>
@@ -87,7 +93,9 @@
                                                 <input class="form-control" name="password" placeholder="********" required type="password">
                                             </div>
                                             <div class="mt-5 mb-10">
-                                                <button type="submit" name="add_new_admin_btn" class="btn w-100 btn-lg btn-dark">Add New Admin</button>
+                                                <button type="submit" name="add_new_admin_btn" class="button btn w-100 btn-lg btn-dark" onclick="this.classList.toggle('button--loading')">
+                                                    <span class="button__text">Add New Admin</span>
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
