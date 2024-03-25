@@ -14,9 +14,9 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 } else {
     $host 		= "localhost";
-    $user 		= "webiirem_heritage";
-    $password 	= "$10Password!!";
-    $database 	= "webiirem_heritage";
+    $user 		= "vutakfmy_josben";
+    $password 	= "AllowAdmin2Pass";
+    $database 	= "vutakfmy_app";
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 }
 // connect to the database server
