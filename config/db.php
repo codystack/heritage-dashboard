@@ -14,7 +14,7 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
 } else {
     $host 		= "localhost";
-    $user 		= "vutakfmy_josben";
+    $user 		= "vutakfmy_dashboard";
     $password 	= "AllowAdmin2Pass";
     $database 	= "vutakfmy_app";
     error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors
